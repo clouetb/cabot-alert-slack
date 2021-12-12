@@ -29,6 +29,7 @@ Service {{ service.name }} {% if service.overall_status == service.PASSING_STATU
 {% endif %}\
 """
 
+
 # This provides the slack alias for each user. Each object corresponds to a User
 class SlackAlert(AlertPlugin):
     name = "Slack"
@@ -93,16 +94,17 @@ class SlackAlert(AlertPlugin):
                     'title': 'status',
                     'value': service.overall_status,
                     'short': True
-                    }, {
+                }, {
                     'title': 'old status',
                     'value': service.old_overall_status,
                     'short': True
-                    }
+                }
                 ],
                 'callback_id': "acknowledge_{}".format(service.id),
                 'actions': actions
             }]
         }))
+
 
 class SlackAlertUserData(AlertPluginUserData):
     name = "Slack Plugin"
