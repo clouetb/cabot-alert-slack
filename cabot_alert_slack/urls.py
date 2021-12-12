@@ -1,6 +1,6 @@
-from django.conf.urls import include, url
+from django.urls import re_path
 from .views import slack_message_callback
 
 urlpatterns = [
-    url(r'^messages', slack_message_callback, name="slack-message-callback"),
+    re_path(r'^messages', slack_message_callback, name="slack-message-callback"),
 ]
